@@ -23,7 +23,6 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         document.documentElement.classList.add("dark");
       }
     };
-
     handleTheme();
   }, [mode]);
 
@@ -43,6 +42,5 @@ export function useTheme() {
   if (context === undefined) {
     throw new Error("usetheme error");
   }
-
   return context;
 }
