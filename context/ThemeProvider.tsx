@@ -10,17 +10,17 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // setting mode for theme
-  const [mode, setMode] = useState<"dark" | "light" | null>(null);
+  const [mode, setMode] = useState<"dark" | "light" | null>("dark");
 
   useEffect(() => {
     // function for setting the theme
     const handleTheme = () => {
       if (mode === "dark") {
-        setMode("light");
-        document.documentElement.classList.add("light");
-      } else {
-        setMode("dark");
+        document.documentElement.classList.remove("light");
         document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.add("light");
       }
     };
     handleTheme();
