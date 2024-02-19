@@ -9,6 +9,9 @@ body {
 }
 
 @layer utilities {
+  .font-spaceGrotesk{
+    font-family: var(--font-space-grotesk)
+  }
   .flex-center {
     @apply flex justify-center items-center;
   }
