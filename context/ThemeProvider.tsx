@@ -3,24 +3,28 @@ import React, { useContext, createContext, useState, useEffect } from "react";
 
 interface ThemeContextType {
   mode: string | null;
-  setMode: (mode: "dark" | "light" | null) => void;
+  setMode: (mode: string) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // setting mode for theme
-  const [mode, setMode] = useState<"dark" | "light" | null>("dark");
+  const [mode, setMode] = useState("");
 
   useEffect(() => {
     // function for setting the theme
     const handleTheme = () => {
-      if (mode === "dark") {
-        document.documentElement.classList.remove("light");
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("prefers-color-scheme: dark").matches)
+      ) {
+        setMode("dark");
         document.documentElement.classList.add("dark");
       } else {
+        setMode("light");
         document.documentElement.classList.remove("dark");
-        document.documentElement.classList.add("light");
       }
     };
     handleTheme();
