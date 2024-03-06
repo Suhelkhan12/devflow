@@ -33,7 +33,11 @@ const LeftSidebar = () => {
                     height={20}
                     className={`${isActive ? "" : "invert-colors"}`}
                   />
-                  <p className={`${isActive ? "base-bold" : "base-medium"}`}>
+                  <p
+                    className={`${
+                      isActive ? "base-bold" : "base-medium"
+                    } max-lg:hidden`}
+                  >
                     {link.label}
                   </p>
                 </Link>
@@ -46,7 +50,16 @@ const LeftSidebar = () => {
             <div>
               <Link href="/sign-in">
                 <Button className=" small-medium btn-secondary min-h-[42px] w-full rounded-lg px-4 py-3 shadow-none">
-                  <span className=" primary-text-gradient">Login</span>
+                  <Image
+                    src="/assets/icons/account.svg"
+                    alt="Login-icon"
+                    width={20}
+                    height={20}
+                    className="invert-colors lg:hidden"
+                  />
+                  <span className=" primary-text-gradient max-lg:hidden">
+                    Login
+                  </span>
                 </Button>
               </Link>
             </div>
@@ -54,7 +67,14 @@ const LeftSidebar = () => {
             <div>
               <Link href="/sign-up">
                 <Button className=" small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[42px] w-full rounded-lg px-4 py-3 shadow-none">
-                  Signup
+                  <Image
+                    src="/assets/icons/sign-up.svg"
+                    alt="signup-icon"
+                    width={20}
+                    height={20}
+                    className="invert-colors lg:hidden "
+                  />
+                  <span className="max-lg:hidden">Signup</span>
                 </Button>
               </Link>
             </div>
