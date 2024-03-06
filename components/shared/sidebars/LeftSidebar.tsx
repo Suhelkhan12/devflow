@@ -3,6 +3,8 @@ import { sidebarLinks } from "@/constants";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { SignedOut } from "@clerk/nextjs";
 
 const LeftSidebar = () => {
   const path = usePathname();
@@ -37,6 +39,25 @@ const LeftSidebar = () => {
             </div>
           );
         })}
+        <SignedOut>
+          <div className="flex flex-col gap-3">
+            <div>
+              <Link href="/sign-in">
+                <Button className=" small-medium btn-secondary min-h-[42px] w-full rounded-lg px-4 py-3 shadow-none">
+                  <span className=" primary-text-gradient">Login</span>
+                </Button>
+              </Link>
+            </div>
+
+            <div>
+              <Link href="/sign-up">
+                <Button className=" small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[42px] w-full rounded-lg px-4 py-3 shadow-none">
+                  Signup
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </SignedOut>
       </div>
     </section>
   );
