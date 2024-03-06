@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 const RightSidebar = () => {
   // dummy questions
   const hotQuestions = [
@@ -32,15 +33,22 @@ const RightSidebar = () => {
           <div className="mt-7 flex w-full flex-col gap-[30px]">
             {hotQuestions.map((question) => {
               return (
-                <div className="flex w-full justify-between" key={question._id}>
-                  <p className="">{question.title}</p>
+                <Link
+                  className="group flex w-full items-start justify-between "
+                  key={question._id}
+                  href={`/question/${question._id}`}
+                >
+                  <p className=" body-medium text-dark500_light700">
+                    {question.title}
+                  </p>
                   <Image
-                    src="/assets/icons/arrow-right.svg"
+                    className=" transition group-hover:translate-x-1"
+                    src="/assets/icons/chevron-right.svg"
                     alt="left-arrow image"
                     width={20}
                     height={20}
                   />
-                </div>
+                </Link>
               );
             })}
           </div>
