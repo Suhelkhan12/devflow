@@ -40,7 +40,7 @@ const MobileNav = () => {
             Dev <span className="text-primary-500">Flow</span>
           </p>
         </Link>
-        <div className=" flex h-[80%]  flex-col justify-between">
+        <div className=" flex h-[90%]  flex-col justify-between">
           <SheetClose asChild>
             <Navcontent />
           </SheetClose>
