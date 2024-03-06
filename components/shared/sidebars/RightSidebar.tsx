@@ -96,7 +96,7 @@ const RightSidebar = () => {
           <h3 className="h3-bold text-dark200_light900">Top questions</h3>
           <div className="mt-7 flex w-full flex-col gap-4">
             {popularTags.map((tag) => (
-              <Tag key={tag._id} {...tag} />
+              <Tag key={tag._id} {...tag} showCount />
             ))}
           </div>
         </div>
