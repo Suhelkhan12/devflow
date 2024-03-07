@@ -3,6 +3,7 @@ import LocalSearch from "@/components/shared/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { HomePageFilters } from "@/constants/filter";
+import HomeFilters from "@/components/home/HomeFilters";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
           </Button>
         </Link>
       </div>
-      <div className="mt-8 flex justify-between gap-5 max-sm:flex-col sm:items-center">
+      <div className="mt-8 flex justify-between gap-5 sm:flex-col ">
         <LocalSearch
           route="/"
           iconPositon="left"
@@ -28,6 +29,7 @@ export default function Home() {
           otherClasses="min-h-14 sm:min-w-[170px]"
           containerClasses="hidden max-lg:flex"
         />
+        <HomeFilters />
       </div>
     </>
   );
