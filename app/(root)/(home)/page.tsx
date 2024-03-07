@@ -14,7 +14,13 @@ export default function Home() {
         </Link>
       </div>
       <div className="mt-8 flex justify-between gap-5 max-sm:flex-col sm:items-center">
-        <LocalSearch />
+        <LocalSearch
+          route="/"
+          iconPositon="left"
+          imgSrc="/assets/icons/search.svg"
+          placeholder="Search for questions here..."
+          otherClasses="flex-1"
+        />
       </div>
     </>
   );
