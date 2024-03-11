@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { HomePageFilters } from "@/constants/filter";
 import HomeFilters from "@/components/home/HomeFilters";
+import NoQuestions from "@/components/shared/noQuestions/NoQuestions";
+
+const questions = [];
 
 export default function Home() {
   return (
@@ -30,6 +33,17 @@ export default function Home() {
           containerClasses="hidden max-lg:flex"
         />
         <HomeFilters />
+        <div className="mt-10 flex w-full flex-col">
+          {questions.length ? (
+            questions.map(
+              (question) =>
+                // <QuestionCard key={question._id} {...question} />
+                "Questioncard"
+            )
+          ) : (
+            <NoQuestions />
+          )}
+        </div>
       </div>
     </>
   );
