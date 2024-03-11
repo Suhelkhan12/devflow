@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const GlobalSearch = () => {
   return (
-    <div className="background-light800_darkgradient relative w-full max-w-[37.5rem]  overflow-hidden rounded-xl max-lg:hidden">
+    <div className="background-light800_darkgradient light-border-2 relative w-full  max-w-[37.5rem] overflow-hidden rounded-xl border max-lg:hidden">
       <div className=" relative flex  grow items-center gap-1  pl-4">
         <Image
           src="/assets/icons/search.svg"

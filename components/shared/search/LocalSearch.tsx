@@ -20,7 +20,7 @@ const LocalSearch = ({
 }: CustomInputProps) => {
   return (
     <div
-      className={`background-light800_darkgradient flex min-h-14 grow  gap-4 overflow-hidden rounded-xl pl-4 ${otherClasses}`}
+      className={`background-light800_darkgradient light-border-2 flex min-h-14 grow  gap-4 overflow-hidden rounded-xl border pl-4 dark:border-0 ${otherClasses}`}
     >
       {iconPositon === "left" && (
         <Image

@@ -65,7 +65,7 @@ const RightSidebar = () => {
     },
   ];
   return (
-    <section className=" background-light900_dark200 light-border sticky right-0 top-0 flex h-screen w-[330px] flex-col justify-between overflow-y-auto border-l p-6 pt-32 shadow-light-300 dark:shadow-none max-xl:hidden">
+    <section className=" background-light900_dark200  light-border-2 sticky right-0 top-0 flex h-screen w-[330px] flex-col justify-between overflow-y-auto border  p-6 pt-32 shadow-light-300 dark:shadow-none max-xl:hidden">
       <div className="flex h-full flex-col justify-between gap-16">
         <div>
           <h3 className="h3-bold text-dark200_light900">Top questions</h3>
