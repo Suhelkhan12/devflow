@@ -11,9 +11,9 @@ const questions = [
     _id: "1",
     title: "How do I debug JavaScript code effectively?",
     tags: [
-      { _id: "1", name: "JavaScript" },
-      { _id: "2", name: "Debugging" },
-      { _id: "3", name: "Development" },
+      { _id: 1, name: "JavaScript" },
+      { _id: 2, name: "Debugging" },
+      { _id: 3, name: "Development" },
     ],
     author: {
       _id: "1",
@@ -29,9 +29,9 @@ const questions = [
     _id: "2",
     title: "What are the latest trends in front-end frameworks?",
     tags: [
-      { _id: "4", name: "Frontend" },
-      { _id: "5", name: "Frameworks" },
-      { _id: "6", name: "Web Development" },
+      { _id: 1, name: "Frontend" },
+      { _id: 2, name: "Frameworks" },
+      { _id: 3, name: "Web Development" },
     ],
     author: {
       _id: "2",
@@ -47,9 +47,9 @@ const questions = [
     _id: "3",
     title: "How can I improve my code review process?",
     tags: [
-      { _id: "7", name: "Code Review" },
-      { _id: "8", name: "Development" },
-      { _id: "9", name: "Best Practices" },
+      { _id: 1, name: "Code Review" },
+      { _id: 2, name: "Development" },
+      { _id: 3, name: "Best Practices" },
     ],
     author: {
       _id: "3",
