@@ -74,7 +74,7 @@ export default function Home() {
           </Button>
         </Link>
       </div>
-      <div className="mt-8 flex justify-between gap-5 sm:flex-col ">
+      <div className="mt-8 flex flex-col justify-between gap-5 ">
         <LocalSearch
           route="/"
           iconPositon="left"
@@ -88,7 +88,7 @@ export default function Home() {
           containerClasses="hidden max-lg:flex"
         />
         <HomeFilters />
-        <div className="mt-10 flex w-full flex-col gap-6">
+        <div className="mt-6 flex w-full flex-col gap-6 sm:mt-10">
           {questions.length ? (
             questions.map((question) => (
               <QuestionCard key={question._id} {...question} />

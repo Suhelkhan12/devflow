@@ -23,7 +23,7 @@ interface QuestionCardProps {
 
 const QuestionCard = (props: QuestionCardProps) => {
   return (
-    <div className=" card-wrapper light-border-2 rounded-xl border px-9 py-11">
+    <div className=" card-wrapper light-border-2 rounded-xl border p-6 sm:p-11">
       <div className=" flex flex-col-reverse items-start justify-between gap-5  sm:flex-row">
         <div>
           <span className=" subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden">
