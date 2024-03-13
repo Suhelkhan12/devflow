@@ -24,7 +24,7 @@ const LeftSidebar = () => {
                     isActive
                       ? "primary-gradient rounded-lg text-light-900"
                       : "text-dark300_light900"
-                  } flex items-center justify-start gap-4 bg-transparent p-2`}
+                  } hover:background-light800_darkgradient flex items-center justify-start gap-4 overflow-hidden rounded-sm bg-transparent p-2 transition `}
                 >
                   <Image
                     src={link.imgURL}
