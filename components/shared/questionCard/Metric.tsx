@@ -3,7 +3,7 @@ import Image from "next/image";
 interface MetricProps {
   imgUrl: string;
   alt: string;
-  value: string | number;
+  value?: string | number;
   title: string;
   href?: string;
   textStyles?: string;

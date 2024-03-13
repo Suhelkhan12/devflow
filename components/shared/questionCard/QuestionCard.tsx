@@ -46,27 +46,37 @@ const QuestionCard = (props: QuestionCardProps) => {
         ))}
       </div>
       <div className=" mt-6 flex w-full flex-wrap justify-between">
-        <Metric
-          imgUrl="/assets/icons/like.svg"
-          alt="upvotes"
-          value={props.upvotes}
-          title="Votes"
-          textStyles="small-medium text-dark400_light800"
-        />
-        <Metric
-          imgUrl="/assets/icons/message.svg"
-          alt="message"
-          value={props.answers.length}
-          title="Answers"
-          textStyles="small-medium text-dark400_light800"
-        />
-        <Metric
-          imgUrl="/assets/icons/eye.svg"
-          alt="eye"
-          value={props.views}
-          title="Views"
-          textStyles="small-medium text-dark400_light800"
-        />
+        <div>
+          <Metric
+            imgUrl="/assets/images/Suhel.png"
+            alt="user-image"
+            title="Suhel"
+            textStyles="small-medium text-dark400_light800"
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          <Metric
+            imgUrl="/assets/icons/like.svg"
+            alt="upvotes"
+            value={props.upvotes}
+            title="Votes"
+            textStyles="small-medium text-dark400_light800"
+          />
+          <Metric
+            imgUrl="/assets/icons/message.svg"
+            alt="message"
+            value={props.answers.length}
+            title="Answers"
+            textStyles="small-medium text-dark400_light800"
+          />
+          <Metric
+            imgUrl="/assets/icons/eye.svg"
+            alt="eye"
+            value={props.views}
+            title="Views"
+            textStyles="small-medium text-dark400_light800"
+          />
+        </div>
       </div>
     </div>
   );
