@@ -6,6 +6,7 @@ import { HomePageFilters } from "@/constants/filter";
 import HomeFilters from "@/components/home/HomeFilters";
 import NoQuestions from "@/components/shared/noQuestions/NoQuestions";
 import QuestionCard from "@/components/shared/questionCard/QuestionCard";
+
 const questions = [
   {
     _id: "1",
@@ -17,7 +18,7 @@ const questions = [
     ],
     author: {
       _id: "1",
-      name: "John Doe",
+      name: "Suhel khan",
       picture: "/assets/images/Suhel.png",
     },
     upvotes: 15,
@@ -35,7 +36,7 @@ const questions = [
     ],
     author: {
       _id: "2",
-      name: "Jane Smith",
+      name: "Aakash duggal",
       picture: "/assets/images/Suhel.png",
     },
     upvotes: 20,
@@ -53,7 +54,25 @@ const questions = [
     ],
     author: {
       _id: "3",
-      name: "Michael Johnson",
+      name: "Anjali sharma",
+      picture: "/assets/images/Suhel.png",
+    },
+    upvotes: 12,
+    views: 90,
+    answers: [],
+    createdAt: new Date("2023-10-22T15:35:00.000Z"),
+  },
+  {
+    _id: "4",
+    title: "How useRef is used in react to get reference of other node??",
+    tags: [
+      { _id: 1, name: "React" },
+      { _id: 2, name: "Development" },
+      { _id: 3, name: "Frontend" },
+    ],
+    author: {
+      _id: "3",
+      name: "Aman kaushal",
       picture: "/assets/images/Suhel.png",
     },
     upvotes: 12,

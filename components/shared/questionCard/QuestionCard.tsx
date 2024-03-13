@@ -1,6 +1,7 @@
 import Tag from "../tag/Tag";
 import Link from "next/link";
 import Metric from "./Metric";
+import { getTimeElapsed } from "@/lib/utils";
 
 interface TagTypes {
   _id: number;
@@ -28,7 +29,7 @@ const QuestionCard = (props: QuestionCardProps) => {
       <div className=" flex flex-col-reverse items-start justify-between gap-5  sm:flex-row">
         <div>
           <span className=" subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden">
-            {}
+            {getTimeElapsed(props.createdAt)}
           </span>
 
           <Link href={`/question/${props._id}`}>
@@ -51,7 +52,7 @@ const QuestionCard = (props: QuestionCardProps) => {
             imgUrl={props.author.picture}
             alt="user-image"
             value={props.author.name}
-            title="- asked 1 hour ago"
+            title={getTimeElapsed(props.createdAt)}
             href={props.author._id}
             textStyles="body-medium text-dark400_light700"
           />
