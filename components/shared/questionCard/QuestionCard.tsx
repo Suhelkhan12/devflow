@@ -48,10 +48,12 @@ const QuestionCard = (props: QuestionCardProps) => {
       <div className=" mt-6 flex w-full flex-wrap justify-between">
         <div>
           <Metric
-            imgUrl="/assets/images/Suhel.png"
+            imgUrl={props.author.picture}
             alt="user-image"
-            title="Suhel"
-            textStyles="small-medium text-dark400_light800"
+            value={props.author.name}
+            title="- asked 1 hour ago"
+            href={props.author._id}
+            textStyles="body-medium text-dark400_light700"
           />
         </div>
         <div className="flex items-center gap-2">
