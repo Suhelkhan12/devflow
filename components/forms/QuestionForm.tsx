@@ -47,7 +47,7 @@ const QuestionForm = () => {
               <FormLabel className=" text-dark400_light800 paragraph-medium ">
                 Question title <span className="text-primary-500">*</span>
               </FormLabel>
-              <FormControl className="mt-3.5">
+              <FormControl className="mt-[1.125rem]">
                 <Input
                   className="no-focus paragraph-regular background-light800_dark400 light-border-2 text-dark300_light700 min-h-[56px]"
                   {...field}
@@ -57,7 +57,52 @@ const QuestionForm = () => {
                 Be specific and imagine you’re asking a question to another
                 person.
               </FormDescription>
-              <FormMessage />
+              <FormMessage className=" text-red-500" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="explaination"
+          render={({ field }) => (
+            <FormItem className="flex w-full flex-col">
+              <FormLabel className=" text-dark400_light800 paragraph-medium ">
+                Detailed explaination of your problem{" "}
+                <span className="text-primary-500">*</span>
+              </FormLabel>
+              <FormControl className="mt-[1.125rem]">
+                <Input
+                  className="no-focus paragraph-regular background-light800_dark400 light-border-2 text-dark300_light700 min-h-[56px]"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription className="body-regular mt-2.5 text-light-500">
+                Introduce the problem and expand on what you put in the title.
+                Minimum 20 characters.
+              </FormDescription>
+              <FormMessage className=" text-red-500" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="tags"
+          render={({ field }) => (
+            <FormItem className="flex w-full flex-col">
+              <FormLabel className=" text-dark400_light800 paragraph-medium ">
+                Question tags <span className="text-primary-500">*</span>
+              </FormLabel>
+              <FormControl className="mt-[1.125rem]">
+                <Input
+                  className="no-focus paragraph-regular background-light800_dark400 light-border-2 text-dark300_light700 min-h-[56px]"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription className="body-regular mt-2.5 text-light-500">
+                Add up to 5 tags to describe what your question is about. Start
+                typing to see suggestions.
+              </FormDescription>
+              <FormMessage className=" text-red-500" />
             </FormItem>
           )}
         />
