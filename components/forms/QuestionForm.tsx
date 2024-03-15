@@ -1,5 +1,8 @@
 "use client";
 
+import { useRef } from "react";
+import { Editor } from "@tinymce/tinymce-react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -19,6 +22,13 @@ import {
 import { Input } from "@/components/ui/input";
 
 const QuestionForm = () => {
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
+    }
+  };
+
   const form = useForm<z.infer<typeof QuestionFromSchema>>({
     resolver: zodResolver(QuestionFromSchema),
     defaultValues: {
@@ -71,10 +81,30 @@ const QuestionForm = () => {
                 <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl className="mt-[1.125rem]">
-                <Input
-                  className="no-focus paragraph-regular background-light800_dark400 light-border-2 text-dark300_light700 min-h-[56px]"
-                  {...field}
-                />
+                <>
+                  <Editor
+                    apiKey="l4u4r45azaa6fx0xeihtl1t3gmjn231jigk6invgg3wxd7hb"
+                    onInit={(evt, editor) => (editorRef.current = editor)}
+                    initialValue="<p>This is the initial content of the editor.</p>"
+                    init={{
+                      height: 500,
+                      menubar: false,
+                      plugins: [
+                        "advlist autolink lists link image charmap print preview anchor",
+                        "searchreplace visualblocks code fullscreen",
+                        "insertdatetime media table paste code help wordcount",
+                      ],
+                      toolbar:
+                        "undo redo | formatselect | " +
+                        "bold italic backcolor | alignleft aligncenter " +
+                        "alignright alignjustify | bullist numlist outdent indent | " +
+                        "removeformat | help",
+                      content_style:
+                        "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                    }}
+                  />
+                  <button onClick={log}>Log editor content</button>
+                </>
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
                 Introduce the problem and expand on what you put in the title.
