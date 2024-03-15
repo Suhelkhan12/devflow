@@ -24,7 +24,8 @@ const MetricContent = (props: MetricProps) => {
       </div>
       <p className={`${props.textStyles} flex items-center gap-1`}>
         {" "}
-        <span className=" font-semibold">{props.value}</span> {props.title}
+        <span className=" font-semibold">{props.value}</span>{" "}
+        <span className="hidden sm:block">{props.title}</span>
       </p>
     </>
   );

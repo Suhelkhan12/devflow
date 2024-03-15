@@ -32,8 +32,15 @@ export function getTimeElapsed(date: Date): string {
 }
 
 
-
-
-
-
+export function formatBigNumber(num: number): string {
+  let result: string;
+  if (num >= 1000000) {
+      result = num >= 10000000 ? (num / 1000000).toFixed(0) + "M" : (num / 1000000).toFixed(2) + "M";
+  } else if (num >= 1000) {
+      result = (num / 1000).toFixed(0) + "K";
+  } else {
+      result = num.toString();
+  }
+  return result;
+} 
 

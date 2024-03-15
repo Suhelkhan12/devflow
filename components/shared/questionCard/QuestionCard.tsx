@@ -1,7 +1,7 @@
 import Tag from "../tag/Tag";
 import Link from "next/link";
 import Metric from "./Metric";
-import { getTimeElapsed } from "@/lib/utils";
+import { formatBigNumber, getTimeElapsed } from "@/lib/utils";
 
 interface TagTypes {
   _id: number;
@@ -24,11 +24,12 @@ interface QuestionCardProps {
 }
 
 const QuestionCard = (props: QuestionCardProps) => {
+  console.log(formatBigNumber(props.upvotes));
   return (
-    <div className=" card-wrapper light-border-2 rounded-xl border p-6 sm:p-11">
+    <div className=" card-wrapper light-border-2 rounded-xl border p-4 sm:p-11">
       <div className=" flex flex-col-reverse items-start justify-between gap-5  sm:flex-row">
         <div>
-          <span className=" subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden">
+          <span className=" subtle-regular text-dark400_light700 mb-1 line-clamp-1 flex sm:hidden">
             {getTimeElapsed(props.createdAt)}
           </span>
 
@@ -61,21 +62,21 @@ const QuestionCard = (props: QuestionCardProps) => {
           <Metric
             imgUrl="/assets/icons/like.svg"
             alt="upvotes"
-            value={props.upvotes}
+            value={formatBigNumber(props.upvotes)}
             title="Votes"
             textStyles="small-medium text-dark400_light800"
           />
           <Metric
             imgUrl="/assets/icons/message.svg"
             alt="message"
-            value={props.answers.length}
+            value={formatBigNumber(props.answers.length)}
             title="Answers"
             textStyles="small-medium text-dark400_light800"
           />
           <Metric
             imgUrl="/assets/icons/eye.svg"
             alt="eye"
-            value={props.views}
+            value={formatBigNumber(props.views)}
             title="Views"
             textStyles="small-medium text-dark400_light800"
           />
