@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { QuestionFromSchema } from "@/lib/validation";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,43 +18,44 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const formSchema = z.object({
-  username: z
-    .string()
-    .min(3, {
-      message: "Name should have atleast 3 characters.",
-    })
-    .max(50, {
-      message: "Name too big.",
-    }),
-});
-
 const QuestionForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof QuestionFromSchema>>({
+    resolver: zodResolver(QuestionFromSchema),
     defaultValues: {
-      username: "",
+      title: "",
+      explaination: "",
+      tags: [],
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof QuestionFromSchema>) {
     console.log(values);
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex w-full flex-col gap-9
+      "
+      >
         <FormField
           control={form.control}
-          name="username"
+          name="title"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
+            <FormItem className="flex w-full flex-col">
+              <FormLabel className=" text-dark400_light800 paragraph-medium ">
+                Question title <span className="text-primary-500">*</span>
+              </FormLabel>
+              <FormControl className="mt-3.5">
+                <Input
+                  className="no-focus paragraph-regular background-light800_dark400 light-border-2 text-dark300_light700 min-h-[56px]"
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
+              <FormDescription className="body-regular mt-2.5 text-light-500">
+                Be specific and imagine you’re asking a question to another
+                person.
               </FormDescription>
               <FormMessage />
             </FormItem>
