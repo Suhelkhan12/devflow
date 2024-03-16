@@ -1,10 +1,10 @@
 "use client";
+import React, { useRef } from "react";
+import Image from "next/image";
 
-import { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { QuestionFromSchema } from "@/lib/validation";
@@ -20,14 +20,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useForm } from "react-hook-form";
+import { Badge } from "../ui/badge";
 
 const QuestionForm = () => {
   const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
 
   const form = useForm<z.infer<typeof QuestionFromSchema>>({
     resolver: zodResolver(QuestionFromSchema),
@@ -41,6 +38,45 @@ const QuestionForm = () => {
   function onSubmit(values: z.infer<typeof QuestionFromSchema>) {
     console.log(values);
   }
+
+  // for hanlding tags input
+  const handleInputKeydown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    field: any
+  ) => {
+    if (e.key === "Enter" && field.name === "tags") {
+      e.preventDefault();
+
+      // getting whole tag input element
+      const tagInput = e.target as HTMLInputElement;
+      const tagValue = tagInput.value.trim();
+
+      if (tagValue !== "") {
+        if (tagValue.length > 15) {
+          return form.setError("tags", {
+            type: "required",
+            message: "Must be less than 15 characters",
+          });
+        }
+
+        // for tags who does exist on field
+        // taki do same tags na add ho
+        if (!field.value.includes(tagValue as never)) {
+          form.setValue("tags", [...field.value, tagValue]);
+          tagInput.value = "";
+          form.clearErrors("tags");
+        }
+      } else {
+        form.trigger();
+      }
+    }
+  };
+
+  // for deleting tag
+  const handleTagRemove = (tag: string, field: any) => {
+    const newTags = field.value.filter((t: string) => t !== tag);
+    form.setValue("tags", newTags);
+  };
 
   return (
     <Form {...form}>
@@ -83,27 +119,42 @@ const QuestionForm = () => {
               <FormControl className="mt-[1.125rem]">
                 <>
                   <Editor
-                    apiKey="l4u4r45azaa6fx0xeihtl1t3gmjn231jigk6invgg3wxd7hb"
-                    onInit={(evt, editor) => (editorRef.current = editor)}
-                    initialValue="<p>This is the initial content of the editor.</p>"
+                    apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
+                    onInit={(evt, editor) => {
+                      // @ts-ignore
+                      editorRef.current = editor;
+                    }}
+                    initialValue=""
                     init={{
-                      height: 500,
+                      height: 350,
                       menubar: false,
                       plugins: [
-                        "advlist autolink lists link image charmap print preview anchor",
-                        "searchreplace visualblocks code fullscreen",
-                        "insertdatetime media table paste code help wordcount",
+                        "advlist",
+                        "autolink",
+                        "lists",
+                        "link",
+                        "image",
+                        "charmap",
+                        "preview",
+                        "anchor",
+                        "searchreplace",
+                        "visualblocks",
+                        "codesample",
+                        "fullscreen",
+                        "inser,tdatetime",
+                        "media",
+                        "table",
                       ],
+
                       toolbar:
-                        "undo redo | formatselect | " +
-                        "bold italic backcolor | alignleft aligncenter " +
-                        "alignright alignjustify | bullist numlist outdent indent | " +
+                        "undo redo | " +
+                        " codesample bold italic backcolor | alignleft aligncenter " +
+                        "alignright alignjustify | bullist numlist | " +
                         "removeformat | help",
                       content_style:
-                        "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                        "body { font-family:Inter; font-size:16px }",
                     }}
                   />
-                  <button onClick={log}>Log editor content</button>
                 </>
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
@@ -123,10 +174,35 @@ const QuestionForm = () => {
                 Question tags <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl className="mt-[1.125rem]">
-                <Input
-                  className="no-focus paragraph-regular background-light800_dark400 light-border-2 text-dark300_light700 min-h-[56px]"
-                  {...field}
-                />
+                <>
+                  <Input
+                    className="no-focus paragraph-regular background-light800_dark400 light-border-2 text-dark300_light700 min-h-[56px]"
+                    placeholder="Add tags..."
+                    onKeyDown={(e) => handleInputKeydown(e, field)}
+                  />
+                  {field.value.length > 0 && (
+                    <div className="flex-start mt-2.5 gap-2.5">
+                      {field.value.map((tag) => (
+                        <Badge
+                          key={tag}
+                          onClick={() => {
+                            handleTagRemove(tag, field);
+                          }}
+                          className=" subtle-medium background-light800_dark300 text-light400_light500 flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 capitalize"
+                        >
+                          {tag}
+                          <Image
+                            src="/assets/icons/close.svg"
+                            alt="cross"
+                            width={12}
+                            height={12}
+                            className="cursor-pointer object-contain invert-0 dark:invert"
+                          />
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </>
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
                 Add up to 5 tags to describe what your question is about. Start
