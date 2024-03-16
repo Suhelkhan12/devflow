@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 
 import { Editor } from "@tinymce/tinymce-react";
@@ -23,8 +23,19 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { Badge } from "../ui/badge";
 
+// for editing and asking a question type
+const type: any = "create";
+
 const QuestionForm = () => {
   const editorRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  const log = () => {
+    if (editorRef.current) {
+      // @ts-ignore
+      console.log(editorRef.current.getContent());
+    }
+  };
 
   const form = useForm<z.infer<typeof QuestionFromSchema>>({
     resolver: zodResolver(QuestionFromSchema),
@@ -36,7 +47,15 @@ const QuestionForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof QuestionFromSchema>) {
-    console.log(values);
+    setIsSubmitting(true);
+    try {
+      // make an async call to create a question and here all form data will come
+      // redirecting to home page.
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   // for hanlding tags input
@@ -212,7 +231,19 @@ const QuestionForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <div className="flex justify-end">
+          <Button
+            type="submit"
+            className="primary-gradient w-fit !text-light-900"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>{type === "edit" ? "Editing..." : "Posting..."}</>
+            ) : (
+              <>{type === "edit" ? "Edit question" : "Ask a question"}</>
+            )}
+          </Button>
+        </div>
       </form>
     </Form>
   );
