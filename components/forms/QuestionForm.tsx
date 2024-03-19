@@ -22,6 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { Badge } from "../ui/badge";
+import { createQuestion } from "@/lib/actions/question.action";
 
 // for editing and asking a question type
 const type: any = "create";
@@ -29,13 +30,6 @@ const type: any = "create";
 const QuestionForm = () => {
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-
-  const log = () => {
-    if (editorRef.current) {
-      // @ts-ignore
-      console.log(editorRef.current.getContent());
-    }
-  };
 
   const form = useForm<z.infer<typeof QuestionFromSchema>>({
     resolver: zodResolver(QuestionFromSchema),
@@ -46,11 +40,12 @@ const QuestionForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof QuestionFromSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionFromSchema>) {
     setIsSubmitting(true);
     try {
       // make an async call to create a question and here all form data will come
       // redirecting to home page.
+      await createQuestion({});
     } catch (err) {
       console.log(err);
     } finally {
@@ -143,6 +138,8 @@ const QuestionForm = () => {
                       // @ts-ignore
                       editorRef.current = editor;
                     }}
+                    onBlur={field.onBlur}
+                    onEditorChange={(content) => field.onChange(content)}
                     initialValue=""
                     init={{
                       height: 350,
