@@ -4,16 +4,16 @@ export interface ITag extends Document {
 name:string,
 description:string,
 questions: Schema.Types.ObjectId[]
-createdAt:Date,
-
+createdOn:Date,
+followers: Schema.Types.ObjectId[]
 }
 
 const tagSchema = new Schema<ITag>({
     name: {type: String, required:true},
     description: {type: String, required:true},
     questions: [{type: Schema.Types.ObjectId, ref: 'Question'}],
-    createdAt: {type:Date, default: Date.now}
-
+    followers: [{type:Schema.Types.ObjectId, ref: 'User'}],
+    createdOn: {type:Date, default: Date.now},
 })
 
 const User = models.User || model('Tag', tagSchema);
