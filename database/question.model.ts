@@ -23,7 +23,7 @@ const questionSchema = new Schema<IQuestion>({
     downvotes: [{type: Schema.Types.ObjectId, ref: 'User'}],
     author: {type:Schema.Types.ObjectId, ref: 'User'},
     answers: [{type:Schema.Types.ObjectId, ref:'Answer'}],
-    createdAt: {type: Date, default: Date.now}
+    createdAt: {type: Date, default: Date.now},
 });
 
 // converting questionSchema to model by first checking if it already exists or not
