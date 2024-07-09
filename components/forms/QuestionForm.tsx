@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 
 import { Editor } from "@tinymce/tinymce-react";
@@ -27,9 +28,15 @@ import { createQuestion } from "@/lib/actions/question.action";
 // for editing and asking a question type
 const type: any = "create";
 
-const QuestionForm = () => {
+type QuestionFormProps = {
+  userId: string;
+};
+
+const QuestionForm = ({ userId }: QuestionFormProps) => {
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const form = useForm<z.infer<typeof QuestionFromSchema>>({
     resolver: zodResolver(QuestionFromSchema),
@@ -45,12 +52,21 @@ const QuestionForm = () => {
     try {
       // make an async call to create a question and here all form data will come
       // redirecting to home page.
-      await createQuestion({});
+      await createQuestion({
+        title: values.title,
+        content: values.explaination,
+        tags: values.tags,
+        author: JSON.parse(userId),
+      });
+
+      router.push("/");
     } catch (err) {
       console.log(err);
     } finally {
       setIsSubmitting(false);
     }
+
+    form.reset();
   }
 
   // for hanlding tags input

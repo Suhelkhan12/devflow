@@ -9,7 +9,7 @@ export const connectToDB = async ()=>{
     // connecting to db
     // for checking if we have mongodb url or not
     if(!process.env.MONGODB_URL){
-        return console.log('Missing mongodb connection string')
+        return console.error('Missing mongodb connection string')
     }
 
     // for checking if we are already connected to db or not if we are already connected then we will not connect again
@@ -27,6 +27,6 @@ export const connectToDB = async ()=>{
         isConnected=true;
         console.log('Mongo db and mongoose connected')
     }catch(err){
-        console.log(err);
+        console.error(err);
     }
 }

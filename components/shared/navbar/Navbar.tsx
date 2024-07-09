@@ -1,3 +1,5 @@
+import { Space_Grotesk } from "next/font/google";
+
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,6 +7,14 @@ import React from "react";
 import Theme from "./Theme";
 import MobileNav from "./MobileNav";
 import GlobalSearch from "../search/GlobalSearch";
+import { cn } from "@/lib/utils";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-space-grotesk",
+  preload: true,
+});
 
 const Navbar = () => {
   return (
@@ -16,7 +26,12 @@ const Navbar = () => {
           width={24}
           height={24}
         />
-        <p className="h2-bold font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">
+        <p
+          className={cn(
+            "h2-bold text-dark-100 dark:text-light-900 max-sm:hidden",
+            spaceGrotesk.className
+          )}
+        >
           Dev <span className="text-primary-500">Flow</span>
         </p>
       </Link>

@@ -14,3 +14,5 @@ export const QuestionFromSchema = z.object({
       }),
       tags: z.array(z.string().min(1).max(15)).min(1).max(3)
   });
+
+export type QuestionFromSchemaType = z.infer<typeof QuestionFromSchema>;

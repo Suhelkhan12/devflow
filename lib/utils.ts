@@ -44,3 +44,6 @@ export function formatBigNumber(num: number): string {
   return result;
 } 
 
+export async function wait(time:number){
+    return new Promise((resolve)=>setTimeout(resolve, time))
+}

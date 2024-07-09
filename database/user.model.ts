@@ -11,7 +11,7 @@ export interface IUser extends Document {
     location?:string;
     portfolioWebsite?:string;
     reputation?:number;
-    saved: Schema.Types.ObjectId[]
+    savedQeustions: Schema.Types.ObjectId[]
     joinDate: Date;
 }
 
@@ -26,7 +26,7 @@ const userSchema = new Schema<IUser>({
     location:{type: String},
     portfolioWebsite: {type: String},
     reputation: {type:Number, default:0},
-    saved: [{type:Schema.Types.ObjectId, ref: 'Question'}],
+    savedQeustions: [{type:Schema.Types.ObjectId, ref: 'Question'}],
     joinDate: {type:Date, default: Date.now}
 
 })
