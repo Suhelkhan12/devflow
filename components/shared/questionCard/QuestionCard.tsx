@@ -24,7 +24,6 @@ interface QuestionCardProps {
 }
 
 const QuestionCard = (props: QuestionCardProps) => {
-  console.log(formatBigNumber(props.upvotes));
   return (
     <div className=" card-wrapper light-border-2 rounded-xl border p-4 sm:p-11">
       <div className=" flex flex-col-reverse items-start justify-between gap-5  sm:flex-row">

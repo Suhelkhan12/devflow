@@ -1,6 +1,5 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 
 import { Editor } from "@tinymce/tinymce-react";
@@ -23,20 +22,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { Badge } from "../ui/badge";
-import { createQuestion } from "@/lib/actions/question.action";
 
 // for editing and asking a question type
 const type: any = "create";
 
-type QuestionFormProps = {
-  userId: string;
-};
-
-const QuestionForm = ({ userId }: QuestionFormProps) => {
+const QuestionForm = () => {
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const router = useRouter();
-  const pathname = usePathname();
 
   const form = useForm<z.infer<typeof QuestionFromSchema>>({
     resolver: zodResolver(QuestionFromSchema),
@@ -50,16 +42,7 @@ const QuestionForm = ({ userId }: QuestionFormProps) => {
   async function onSubmit(values: z.infer<typeof QuestionFromSchema>) {
     setIsSubmitting(true);
     try {
-      // make an async call to create a question and here all form data will come
-      // redirecting to home page.
-      await createQuestion({
-        title: values.title,
-        content: values.explaination,
-        tags: values.tags,
-        author: JSON.parse(userId),
-      });
-
-      router.push("/");
+      console.log(values);
     } catch (err) {
       console.log(err);
     } finally {
