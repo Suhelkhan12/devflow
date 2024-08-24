@@ -43,17 +43,18 @@ const QuestionCard = (props: QuestionCardProps) => {
       </div>
       <div className=" mt-[.875rem] flex flex-wrap gap-2">
         {props.tags.map((tag) => (
-          <Tag {...tag} key={tag._id} />
+          <Tag key={tag._id} _id={tag._id} name={tag.name} />
         ))}
       </div>
       <div className=" mt-6 flex w-full flex-wrap justify-between">
         <div>
           <Metric
-            imgUrl={props.author.picture}
+            // fixme
+            imgUrl={"/assets/icons/avatar.svg"}
             alt="user-image"
             value={props.author.name}
             title={getTimeElapsed(props.createdAt)}
-            href={props.author._id}
+            href={String(props.author._id)}
             textStyles="body-medium text-dark400_light700"
           />
         </div>

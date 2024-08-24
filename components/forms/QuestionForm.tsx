@@ -1,6 +1,8 @@
 "use client";
 import React, { useRef, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
+import { createQuestion } from "@/actions/question.action";
 
 import { Editor } from "@tinymce/tinymce-react";
 
@@ -26,7 +28,15 @@ import { Badge } from "../ui/badge";
 // for editing and asking a question type
 const type: any = "create";
 
-const QuestionForm = () => {
+// props
+interface Props {
+  mongoUserId: string;
+}
+
+const QuestionForm = ({ mongoUserId }: Props) => {
+  const router = useRouter();
+  const path = usePathname();
+
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
@@ -42,7 +52,14 @@ const QuestionForm = () => {
   async function onSubmit(values: z.infer<typeof QuestionFromSchema>) {
     setIsSubmitting(true);
     try {
-      console.log(values);
+      await createQuestion({
+        title: values.title,
+        explaination: values.explaination,
+        tags: values.tags,
+        author: JSON.parse(mongoUserId),
+        path,
+      });
+      router.push("/");
     } catch (err) {
       console.log(err);
     } finally {
