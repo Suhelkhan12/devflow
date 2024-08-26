@@ -19,7 +19,7 @@ export const getAllQuestions = async (params: GetQuestionParams) => {
       .populate({ path: "author", model: User })
       .sort({ createdAt: -1 });
 
-    return { questions };
+    if (questions.length > 0) return { questions };
   } catch (e) {
     console.error(e);
   }

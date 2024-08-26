@@ -17,7 +17,7 @@ const NoQuestions = ({
 }: NoQuestionsProps) => {
   return (
     <div className="flex w-full flex-col items-center">
-      <div className="relative mb-7 h-[12.5rem] w-[15rem]">
+      <div className="relative mb-7 h-[10rem] w-[15rem]">
         <Image
           src="/assets/icons/noquestion.png"
           alt="No-questions-image"
