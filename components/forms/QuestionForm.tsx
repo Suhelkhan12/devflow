@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+
 import Image from "next/image";
 import { createQuestion } from "@/actions/question.action";
 
@@ -184,7 +185,7 @@ const QuestionForm = ({ mongoUserId }: Props) => {
                         "alignright alignjustify | bullist numlist | " +
                         "removeformat | help",
                       content_style:
-                        "body { font-family:Inter; font-size:16px }",
+                        "body { font-family:Inter; font-size:16px;  }",
                     }}
                   />
                 </>

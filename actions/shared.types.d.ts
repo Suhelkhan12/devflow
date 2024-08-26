@@ -1,19 +1,37 @@
 import { Schema } from "mongoose";
-import { IUser } from "@/models/user.model"
+import { IUser } from "@/models/user.model";
 
 export interface GetQuestionParams {
-    page?: number;
-    pageSize?: number;
-    searchQuery?: string;
-    filter?:string
+  page?: number;
+  pageSize?: number;
+  searchQuery?: string;
+  filter?: string;
 }
 
 export interface CreateQuestionParams {
-    title: string;
-    explaination: string;
-    tags: string[];
-    author: Schema.Types.ObjectId | IUser;
-    path:string
+  title: string;
+  explaination: string;
+  tags: string[];
+  author: Schema.Types.ObjectId | IUser;
+  path: string;
+}
+
+export interface CreateUserParams {
+  clerkId: string;
+  name: string;
+  username: string;
+  email: string;
+  picture: string;
+}
+
+export interface UpdateUserParams {
+  clerkId: string;
+  updateData: Partial<IUser>;
+  path: string;
+}
+
+export interface DeleteUserParams {
+  clerkId: string;
 }
 
 /**
@@ -129,13 +147,7 @@ export interface GetTopInteractedTagsParams {
   limit?: number;
 }
 
-export interface CreateUserParams {
-  clerkId: string;
-  name: string;
-  username: string;
-  email: string;
-  picture: string;
-}
+
 
 export interface GetUserByIdParams {
   userId: string;
@@ -148,11 +160,7 @@ export interface GetAllUsersParams {
   searchQuery?: string; // Add searchQuery parameter
 }
 
-export interface UpdateUserParams {
-  clerkId: string;
-  updateData: Partial<IUser>;
-  path: string;
-}
+
 
 export interface ToggleSaveQuestionParams {
   userId: string;
@@ -174,8 +182,6 @@ export interface GetUserStatsParams {
   pageSize?: number;
 }
 
-export interface DeleteUserParams {
-  clerkId: string;
-}
+
 
  */
