@@ -1,4 +1,4 @@
-import { Space_Grotesk } from "next/font/google";
+import { Space_Grotesk as SpaceGrotesk } from "next/font/google";
 
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
@@ -9,7 +9,7 @@ import MobileNav from "./MobileNav";
 import GlobalSearch from "../search/GlobalSearch";
 import { cn } from "@/lib/utils";
 
-const spaceGrotesk = Space_Grotesk({
+const spaceGrotesk = SpaceGrotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-space-grotesk",

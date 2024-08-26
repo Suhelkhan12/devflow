@@ -1,6 +1,5 @@
 import { getUserById } from "@/actions/user.action";
 import QuestionForm from "@/components/forms/QuestionForm";
-import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const AskQuestion = async () => {
